@@ -1,5 +1,6 @@
 const defaultConfig = {
   PORT: process.env.PORT || 9000,
+  MINIO_BUCKET_KYC : "kyc",
 };
 
 const devConfig = {

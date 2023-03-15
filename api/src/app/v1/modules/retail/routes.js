@@ -4,7 +4,7 @@ import { chainValidators } from "../../../middlewares/validator.js";
 import { onBoardCustomer, verifyCustomerKYC, getCustomersByStatus, rejectCustomer } from "./controller.js";
 import { idValidator, onBoardCustomerValidator, statusValidator } from "./validations.js";
 
-var upload=multer({dest:"uploads/"});
+var upload=multer({dest:".temp/kyc/"});
 
 export const retailRoutes = new Router();
 
