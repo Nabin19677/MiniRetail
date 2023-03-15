@@ -1,0 +1,30 @@
+.row-title {
+    background: #1f4e79;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .block-letters {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+.loopHead {
+    background: #ccc;
+    color:black;
+}
+
+.sum-header {
+    display: block;
+    width: 100%;
+  }
+.sum-logo {
+    display: inline-block !important;
+    width: 30%;
+  }
+ .sum-logo img {
+    width: 250px;
+    display: block;
+  }

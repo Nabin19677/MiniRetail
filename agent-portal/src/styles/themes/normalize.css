@@ -1,0 +1,213 @@
+a:hover {
+  text-decoration: none;
+}
+
+svg {
+  vertical-align: initial;
+}
+
+.ant-menu-submenu > .ant-menu {
+  background-color: #fff;
+}
+
+.ant-table-thead > tr > th,
+.ant-table-tbody > tr > td {
+  padding: 8px 16px;
+  word-break: normal;
+  -ms-word-break: normal;
+}
+
+.ant-table-thead > tr > th {
+  background: #ebedf0;
+}
+
+h4.article-title {
+  font-size: 1.1875rem;
+}
+
+.ant-modal-confirm-btns button.ant-btn-primary {
+  float: left;
+  margin: 0 10px;
+}
+
+.card {
+  margin-bottom: 24px;
+}
+
+.login-box,
+.reset-box {
+  padding: 6% 0 0;
+}
+
+.login-otp-box{
+  padding: 8% 0 0;
+
+}
+
+.login-otp-box .box{
+  width: 500px;
+  margin: 0 auto;
+}
+
+
+.login-box .p-5,
+.reset-box .p-5 {
+  padding-bottom: 2rem !important;
+}
+
+.login-box .box,
+.reset-box .box {
+  width: 367px;
+  margin: 0 auto;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.company-title {
+  text-align: center;
+  font-size: 1.1875rem;
+}
+
+.profile-view .ant-form-item {
+  margin-bottom: 0 !important;
+}
+
+.not-required-label .ant-form-item-label {
+  padding-left: 10px;
+}
+
+/* Form */
+.policy-form .ant-form-item,
+.password-form .ant-form-item,
+.role-form .ant-form-item,
+.user-form .ant-form-item {
+  margin-bottom: 0;
+}
+
+.password-label-align .ant-form-item-label {
+  text-align: left;
+}
+
+.password-expiry .ant-form-explain {
+  margin-left: 14rem;
+}
+
+.password-label .ant-form-item-children span {
+  font-weight: bolder;
+}
+
+.password-span-label {
+  font-weight: normal !important;
+}
+
+.detail-table .table thead th {
+  border-bottom: none;
+}
+
+.detail-table .table-bordered td {
+  border-right: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  border-top-width: 0;
+}
+
+.scroll-table tbody {
+  display: block;
+  max-height: 50vh;
+  min-width: 720px;
+  overflow-y: auto;
+}
+
+.scroll-table thead,
+.scroll-table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-img {
+  height: 100px;
+  width: 100px;
+}
+
+.table-vScroll tbody {
+  overflow-y: scroll;
+  height: 300px;
+  display: block;
+}
+
+.table-vScroll thead {
+  background: #eee;
+  display: block;
+}
+
+.role-form .ant-checkbox-group .ant-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 575px) {
+  .ant-col-xs-24.ant-form-item-label {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: -6px;
+  }
+
+  .ant-form-vertical .ant-form-explain,
+  .ant-form-vertical .ant-form-extra {
+    margin-top: 3px;
+  }
+
+  .row {
+    margin-right: -14px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .ant-col-xs-24.ant-form-item-label {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    margin-top: 0px;
+    margin-bottom: -6px;
+  }
+
+  .ant-form-vertical .ant-form-explain,
+  .ant-form-vertical .ant-form-extra {
+    margin-top: 3px;
+  }
+
+  .row {
+    margin-right: -14px;
+  }
+}
+
+.app-header .app-header-inner.bg-gibl {
+  background: linear-gradient(
+    90deg,
+    rgb(169, 73, 88) 0%,
+    rgba(139, 45, 72, 0.85) 25.67%,
+    rgba(91, 55, 99, 0.9) 49.79%,
+    rgba(57, 62, 118, 0.94) 70.98%,
+    rgba(37, 66, 130, 0.98) 88.44%,
+    rgba(29, 68, 134, 1) 100%
+  ) !important;
+}
+
+.app-sidenav .bg-gibl {
+  background-color: #fff !important;
+}

@@ -1,0 +1,55 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Mini Retail",
+    "description": "Application for KYC form fill up and verification",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:9000",
+  "basePath": "/api/v1/",
+  "tags": [
+    {
+      "name": "KYC",
+      "description": "On Board Customer for KYC Fillup"
+    }
+  ],
+  "paths": {
+    "/retail/on-board-customer": {
+      "post": {
+        "tags": ["KYC"],
+        "summary": "On Board Customer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Customer": {
+      "required": ["name", "_id", "companies"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "firstName": {
+          "type": "string"
+        }
+
+
+      }
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}

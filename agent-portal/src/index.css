@@ -1,0 +1,47 @@
+body {
+  overflow-x: hidden;
+}
+.formTitle h3 {
+  border-bottom: 1px solid #ccc;
+  font-size: 13px;
+}
+
+* {
+  font-family: 'Rubik', sans-serif;
+}
+/* .ant-input{
+    width: 230px !important;
+    
+  } */
+.ant-form-item-control-input-content,
+.ant-input,
+textarea {
+  text-transform: uppercase;
+}
+.ant-input-email,
+input[id='basicInfo_emailPreferred'],
+[id='basicInfo_email'],
+[id='password'] {
+  text-transform: none;
+}
+.ant-checkbox {
+  text-transform: capitalize;
+}
+.ant-table-column-title {
+  font-weight: bold;
+}
+.ant-table-thead > tr > th {
+  font-weight: bold;
+}
+
+.react-tel-input .form-control {
+  width: 100% !important;
+}
+
+.ant-picker {
+  width: 100%;
+}
+
+.ant-input-number {
+  width: 100%;
+}
