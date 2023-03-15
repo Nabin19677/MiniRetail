@@ -42,6 +42,18 @@ export const Customer = sequelize.define("customer", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  citizenship_front: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  citizenship_back: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  other_document : {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   status : {
     type: DataTypes.ENUM('APPROVED', 'WAITING_FOR_APPROVAL',"REJECTED"),
     allowNull: true,
