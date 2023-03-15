@@ -13,3 +13,9 @@ export class UnauthorizedError extends HttpError {
     this.statusCode = httpStatus.UNAUTHORIZED;
   }
 }
+export class UnrecognizedFieldError extends HttpError {
+  constructor(message = "Unrecognized Field") {
+    super(message);
+    this.statusCode = httpStatus.BAD_REQUEST;
+  }
+}
