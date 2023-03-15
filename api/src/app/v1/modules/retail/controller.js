@@ -1,6 +1,8 @@
 import { responseBuilder, created } from "../../../util/helpers/response-builder.js";
 import { Customer } from "./models/customer.model.js";
-
+import { generateCIFNumber } from "./services.js";
+import { HttpError } from "../../../util/errors/http.js";
+import httpStatus from "http-status";
 
 export async function onBoardCustomer(req, res, next) {
   try {
@@ -25,7 +27,12 @@ export async function getCustomersByStatus(req, res, next) {
 export async function verifyCustomerKYC(req, res, next) {
   try {
     const {id} = req.body;
-    await Customer.update({ status : "APPROVED", CIF : "XXX" }, {
+    const customer = await Customer.findByPk(id)
+    if(customer.status === "REJECTED"){
+      throw new HttpError("Customer is already rejected.", httpStatus.BAD_REQUEST)
+    }
+    const CIF_NUMBER = generateCIFNumber(customer)
+    await customer.update({ status : "APPROVED", CIF : CIF_NUMBER }, {
       where: {
         id
       }
@@ -39,6 +46,14 @@ export async function verifyCustomerKYC(req, res, next) {
 export async function rejectCustomer(req, res, next) {
   try {
     const {id} = req.body;
+    const customer = await Customer.findByPk(id)
+    console.log(customer)
+    if(customer.status === "APPROVED"){
+      throw new HttpError("Customer has already been Approved!.", httpStatus.BAD_REQUEST)
+    }
+    if(customer.status === "REJECTED"){
+      throw new HttpError("Customer is already rejected.", httpStatus.BAD_REQUEST)
+    }
     await Customer.update({ status : "REJECTED", CIF : null }, {
       where: {
         id
