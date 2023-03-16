@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import compression from "compression";
 import helmet from "helmet";
-
+import * as fs from "fs"
 import constants from "../../config/constants.js";
 import { limiter } from "./request-limiter.js";
 

@@ -7,10 +7,10 @@ const IMGS_DIR = "public/images"
 const DOCS_DIR = "public/documents"
 
 if(!fs.existsSync(IMGS_DIR)){
-  fs.mkdirSync(IMGS_DIR)
+  fs.mkdirSync(IMGS_DIR,{ recursive: true })
 }
 if(!fs.existsSync(DOCS_DIR)){
-  fs.mkdirSync(DOCS_DIR)
+  fs.mkdirSync(DOCS_DIR,{ recursive: true })
 }
 
 const storage = multer.diskStorage({
