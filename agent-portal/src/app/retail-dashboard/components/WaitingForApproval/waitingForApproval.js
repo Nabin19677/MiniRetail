@@ -1,7 +1,20 @@
 import React from 'react';
-import { Row, Col, Table, Form, Input, Button, Card, Layout, Select, Space, Tooltip, Modal } from 'antd';
-import moment from "moment"
-import {  StopOutlined, CheckOutlined } from '@ant-design/icons';
+import {
+  Row,
+  Col,
+  Table,
+  Form,
+  Input,
+  Button,
+  Card,
+  Layout,
+  Select,
+  Space,
+  Tooltip,
+  Modal,
+} from 'antd';
+import moment from 'moment';
+import { StopOutlined, CheckOutlined, FileSearchOutlined } from '@ant-design/icons';
 
 export function WaitingForApproval(props) {
   const {
@@ -10,37 +23,37 @@ export function WaitingForApproval(props) {
     approveAndGenerateCIF,
     rejectCustomer,
     redirect,
+    fetchCustomeDetail,
+    setIsDetailModalOpen,
   } = props;
- 
 
   const columns = [
     {
-      title: "S.N",
+      title: 'S.N',
       key: 'S.N.',
       align: 'center',
       isVisible: true,
       width: '2ch',
       render: (text, record, index) => {
-        return index + 1 
+        return index + 1;
       },
     },
     {
-      title: "Name",
+      title: 'Name',
       dataIndex: 'full_name',
       key: 'full_name',
       width: '6ch',
       align: 'center',
-     
-    }, 
+    },
     {
-      title: "Id",
+      title: 'Id',
       dataIndex: 'id',
       key: 'id',
       width: '2ch',
       align: 'center',
     },
     {
-      title: "Date of Birth",
+      title: 'Date of Birth',
       dataIndex: 'dob',
       key: 'dob',
       align: 'center',
@@ -51,7 +64,7 @@ export function WaitingForApproval(props) {
     },
 
     {
-      title: "Gender",
+      title: 'Gender',
       dataIndex: 'gender',
       key: 'gender',
       align: 'center',
@@ -64,7 +77,6 @@ export function WaitingForApproval(props) {
       key: 'mobile_number',
       align: 'center',
       width: '4ch',
-    
     },
     {
       title: 'Email',
@@ -77,50 +89,61 @@ export function WaitingForApproval(props) {
       },
     },
     {
-      title: "Created On",
+      title: 'Created On',
       dataIndex: 'createdAt',
-     
+
       key: 'createdAt',
       align: 'center',
       width: '4ch',
       render: (text, record) => {
-        return <div>{moment(record.createdAt).format("YYYY-MM-DD")}</div>;
+        return <div>{moment(record.createdAt).format('YYYY-MM-DD')}</div>;
       },
     },
- 
+
     {
-      title:"Action",
+      title: 'Action',
       dataIndex: 'action',
       key: 'action',
       fixed: 'right',
       align: 'center',
-      width: '3ch',
+      width: '4ch',
       render: (index, record) => (
         <>
-          <Space wrap size={8}>
-             <Tooltip placement="top" title="Approve">
+          <Space wrap size={6}>
+            <Tooltip placement="top" title="View Detail">
               <Button
                 type="default"
                 shape="circle"
-                icon={<CheckOutlined />}               
+                icon={<FileSearchOutlined />}
+                style={{ color: 'rgba(29, 68, 134, 1)' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fetchCustomeDetail(record.id)
+                  
+                }}
+              />
+            </Tooltip>
+            <Tooltip placement="top" title="Approve">
+              <Button
+                type="default"
+                shape="circle"
+                icon={<CheckOutlined />}
                 style={{ color: 'rgba(29, 68, 134, 1)' }}
                 onClick={(e) => {
                   e.stopPropagation();
                   Modal.confirm({
-                    title: "Are you sure?",
-                    content : "This will approve and generate CIF number for the selected customer.",
+                    title: 'Are you sure?',
+                    content: 'This will approve and generate CIF number for the selected customer.',
                     width: 500,
-                    cancelText: "No",
-                    okText: "Yes",
+                    cancelText: 'No',
+                    okText: 'Yes',
                     onOk() {
-                      approveAndGenerateCIF({id : record.id})
+                      approveAndGenerateCIF({ id: record.id });
                     },
-                  })
-                
-                 
+                  });
                 }}
               />
-            </Tooltip> 
+            </Tooltip>
             <Tooltip placement="top" title="Reject">
               <Button
                 type="default"
@@ -129,16 +152,15 @@ export function WaitingForApproval(props) {
                 style={{ color: 'rgb(255, 99, 71)' }}
                 onClick={(e) => {
                   Modal.confirm({
-                    title: "Are you sure?",
-                    content : "This will reject customer from further process.",
+                    title: 'Are you sure?',
+                    content: 'This will reject customer from further process.',
                     width: 500,
-                    cancelText: "No",
-                    okText: "Yes",
+                    cancelText: 'No',
+                    okText: 'Yes',
                     onOk() {
-                      rejectCustomer({id : record.id})
+                      rejectCustomer({ id: record.id });
                     },
-                  })
-                
+                  });
                 }}
               />
             </Tooltip>
@@ -161,7 +183,6 @@ export function WaitingForApproval(props) {
                     dataSource={retailList}
                     loading={retailDashboardLoading}
                     scroll={{ x: 1600 }}
-                  
                   />
                 </div>
               </Col>
