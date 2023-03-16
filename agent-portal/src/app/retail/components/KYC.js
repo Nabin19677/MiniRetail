@@ -23,17 +23,30 @@ const { Option } = Select;
 
 const KYCForm = (props) => {
   const [form] = Form.useForm();
-  let { retailKycLoading, retailKycDetail, addKycDetails } = props;
+  let { retailKycLoading, addKycDetails } = props;
 
-  const [citizenship, setCitizenshipFile] = useState();
+  const [submitted, setSubmitted] = useState(false);
+  const [citizenshipFront, setCitizenshipFront] = useState();
+  const [citizenshipBack, setCitizenshipBack] = useState();
+  const [otherDocument, setOtherDocument] = useState();
 
   const onFinish = (values) => {
-    let formData = { ...values };
-    formData.dob = formData.dob.format('YYYY-MM-DD');
-    delete formData.citizenship
-    formData.citizenship = citizenship
-    console.log(formData);
-    addKycDetails(formData)
+    try {
+      setSubmitted(true);
+      if (citizenshipFront && citizenshipBack) {
+        let formData = { ...values };
+        formData.dob = formData.dob.format('YYYY-MM-DD');
+        formData.citizenship_front = citizenshipFront;
+        formData.citizenship_back = citizenshipBack;
+        if (otherDocument) {
+          formData.other_document = otherDocument;
+        }
+
+        addKycDetails(formData);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -62,13 +75,7 @@ const KYCForm = (props) => {
           <Card>
             <Spin spinning={retailKycLoading} size="large" tip={'Loading KYC Detail'}>
               <Skeleton loading={retailKycLoading} active>
-                <Form
-                  scrollToFirstError={true}
-                  onFinish={onFinish}
-                  form={form}
-                
-                  layout="vertical"
-                >
+                <Form scrollToFirstError={true} onFinish={onFinish} form={form} layout="vertical">
                   <div>
                     {' '}
                     <div>
@@ -261,20 +268,53 @@ const KYCForm = (props) => {
                     <Divider />
                     <Row gutter={24}>
                       <Col span={6}>
-                        {/* <Form.Item
-                          name={'citizenship'}
-                          label="Citizenship (in PDF)"
-                          rules={[{ required: true, message: 'Citizenship is required.' }]}
-                        > */}
-                          <input
-                            type={'file'}
-                            onChange={(e) => {
-                              const file = e.currentTarget.files[0];
-                              setCitizenshipFile(file);
-                              // e.target.value = null;
-                            }}
-                          />
-                        {/* </Form.Item> */}
+                        <label>
+                          <span style={{ color: 'red' }}>*</span> Citizenship Front
+                        </label>
+                        <input
+                          type={'file'}
+                          accept=".jpeg,.jpg,.png"
+                          onChange={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const file = e.currentTarget.files[0];
+                            setCitizenshipFront(file);
+                          }}
+                        />
+                        {submitted && !citizenshipFront && (
+                          <span style={{ color: 'red' }}>Citizenship Front is required</span>
+                        )}
+                      </Col>
+                      <Col span={6}>
+                        <label>
+                          <span style={{ color: 'red' }}>*</span> Citizenship Back
+                        </label>
+                        <input
+                          type={'file'}
+                          accept=".jpeg,.jpg,.png"
+                          onChange={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const file = e.currentTarget.files[0];
+                            setCitizenshipBack(file);
+                          }}
+                        />
+                        {submitted && !citizenshipBack && (
+                          <span style={{ color: 'red' }}>Citizenship Back is required</span>
+                        )}
+                      </Col>
+                      <Col span={6}>
+                        <label>Other Document</label>
+                        <input
+                          type={'file'}
+                          accept=".jpeg,.jpg,.png,.pdf"
+                          onChange={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const file = e.currentTarget.files[0];
+                            setOtherDocument(file);
+                          }}
+                        />
                       </Col>
                     </Row>
                   </div>

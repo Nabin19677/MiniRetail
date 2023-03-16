@@ -25,7 +25,6 @@ import configureStore from '@store/configureStore';
 import * as serviceWorker from './serviceWorker';
 import App from '@app/App';
 
-import './i18n';
 
 import './index.css';
 
