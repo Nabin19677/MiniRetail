@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Table, Form, Input, Button, Card, Layout, Select, Space, Tooltip } from 'antd';
 import moment from "moment"
-import { EditOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { EditOutlined, FileSearchOutlined } from '@ant-design/icons';
 import { setLocalStorage } from '@utils/storageUtil';
 
 export function Rejected(props) {
@@ -9,6 +9,7 @@ export function Rejected(props) {
     retailDashboardLoading,
     retailList,
     redirect,
+    fetchCustomeDetail
   } = props;
  
   console.log(retailList)
@@ -55,7 +56,7 @@ export function Rejected(props) {
       dataIndex: 'gender',
       key: 'gender',
       align: 'center',
-      width: '5ch',
+      width: '3ch',
     },
 
     {
@@ -71,7 +72,7 @@ export function Rejected(props) {
       dataIndex: 'email',
       key: 'email',
       align: 'center',
-      width: '8ch',
+      width: '6ch',
       render: (text, record) => {
         return <div>{record.email}</div>;
       },
@@ -87,7 +88,35 @@ export function Rejected(props) {
         return <div>{moment(record.createdAt).format("YYYY-MM-DD")}</div>;
       },
     },
- 
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+      fixed: 'right',
+      align: 'center',
+      width: '2ch',
+      render: (index, record) => (
+        <>
+          <Space wrap size={6}>
+            <Tooltip placement="top" title="View Detail">
+              <Button
+                type="default"
+                shape="circle"
+                icon={<FileSearchOutlined />}
+                style={{ color: 'rgba(29, 68, 134, 1)' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fetchCustomeDetail(record.id)
+                  
+                }}
+              />
+            </Tooltip>
+
+
+          </Space>
+        </>
+      ),
+    },
   
   ];
   return (

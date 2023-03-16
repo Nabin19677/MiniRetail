@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Table, Form, Input, Button, Card, Layout, Select, Space, Tooltip } from 'antd';
 import moment from "moment"
-import { EditOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { EditOutlined, FileSearchOutlined } from '@ant-design/icons';
 import { setLocalStorage } from '@utils/storageUtil';
 
 export function Approved(props) {
@@ -9,6 +9,7 @@ export function Approved(props) {
     retailDashboardLoading,
     retailList,
     redirect,
+    fetchCustomeDetail,
   } = props;
  
   console.log(retailList)
@@ -43,7 +44,7 @@ export function Approved(props) {
       title: "CIF",
       dataIndex: 'CIF',
       key: 'CIF',
-      width: '2ch',
+      width: '3ch',
       align: 'center',
     },
     {
@@ -93,6 +94,35 @@ export function Approved(props) {
       render: (text, record) => {
         return <div>{moment(record.createdAt).format("YYYY-MM-DD")}</div>;
       },
+    },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      key: 'action',
+      fixed: 'right',
+      align: 'center',
+      width: '2ch',
+      render: (index, record) => (
+        <>
+          <Space wrap size={6}>
+            <Tooltip placement="top" title="View Detail">
+              <Button
+                type="default"
+                shape="circle"
+                icon={<FileSearchOutlined />}
+                style={{ color: 'rgba(29, 68, 134, 1)' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  fetchCustomeDetail(record.id)
+                  
+                }}
+              />
+            </Tooltip>
+
+
+          </Space>
+        </>
+      ),
     },
  
    
