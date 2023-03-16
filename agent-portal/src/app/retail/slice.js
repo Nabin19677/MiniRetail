@@ -6,17 +6,23 @@ import { store, } from '@utils/httpUtil';
 export const addKycDetails = createAsyncThunk(
   'retailKyc/add',
   (data = {}, { rejectWithValue, dispatch }) => {
-    
+    console.log(data)
     const formData = new FormData();
-    Object.keys(data).forEach((formControlName) => {
-      if (formControlName === 'citizenship') {
-          formData.append('citizenship', data.citizenship, data.citizenship.name);
-      } else
-          formData.append(
-              formControlName,
-              data[formControlName]
-          );
-  });
+    try{
+   
+      Object.keys(data).forEach((formControlName) => {
+        if (["citizenship_front","citizenship_back", "other_document"].includes(formControlName)) {
+            formData.append(formControlName, data[formControlName],  data[formControlName].name);
+        } else
+            formData.append(
+                formControlName,
+                data[formControlName]
+            );
+    });
+    } catch (e) {
+      console.log(e)
+    }
+
     return axios.post(`${API_URL}/retail/on-board-customer`, formData, { headers: {
       "Content-Type": "multipart/form-data",
     },})
