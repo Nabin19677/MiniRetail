@@ -3,9 +3,11 @@ import express from "express";
 import cors from "cors";
 import compression from "compression";
 import helmet from "helmet";
+import swaggerUi from "swagger-ui-express"
 
 import constants from "../../config/constants.js";
 import { limiter } from "./request-limiter.js";
+import { swaggerSpec } from "../../config/swaggerSpec.js";
 
 const isDev = process.env.NODE_ENV.trim() === "development";
 const isProd = process.env.NODE_ENV.trim() === "production";
@@ -27,5 +29,6 @@ export default (app) => {
   app.use(limiter)
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   app.set("PORT", constants.PORT);
 };
