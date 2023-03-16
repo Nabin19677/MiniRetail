@@ -1,7 +1,7 @@
 import "./config/loadEnv.js";
 import chalk from "chalk";
 import { app } from "./app/index.js";
-import { sequelize } from "./db/index.js";
+import { sequelize } from "./config/db.js";
 
 sequelize
   .authenticate()

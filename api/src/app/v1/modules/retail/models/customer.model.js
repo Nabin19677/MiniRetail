@@ -1,7 +1,8 @@
 import { Sequelize, DataTypes } from "sequelize";
-import { sequelize } from "../../../../../db/index.js";
+import { sequelize } from "../../../../../config/db.js";
 
-export const Customer = sequelize.define("customer", {
+export const Customer = sequelize.define("customer", 
+{
   salutation: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -58,6 +59,15 @@ export const Customer = sequelize.define("customer", {
     type: DataTypes.ENUM('APPROVED', 'WAITING_FOR_APPROVAL',"REJECTED"),
     allowNull: true,
     defaultValue : "WAITING_FOR_APPROVAL"
+  }
+},{
+  getterMethods: {
+    basicInfo() {
+      return {
+        id : this.id,
+        CIF : this.CIF
+      }
+    }
   }
 });
 

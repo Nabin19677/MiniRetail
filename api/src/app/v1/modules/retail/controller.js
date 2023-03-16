@@ -1,6 +1,5 @@
 import {
   responseBuilder,
-  created,
 } from "../../../util/helpers/response-builder.js";
 import { Customer } from "./models/customer.model.js";
 import { generateCIFNumber } from "./services.js";
@@ -11,9 +10,8 @@ import { reduceUploadedFiles } from "../../../util/helpers/utils.js";
 export async function onBoardCustomer(req, res, next) {
   try {
     let files = reduceUploadedFiles(req.files)
-    let customer = { ...req.body, ...files };
-    await Customer.create(customer);
-    return res.send(created("Customer Created"));
+    let customer = await Customer.create({ ...req.body, ...files }); 
+    return res.send(responseBuilder(customer.basicInfo, "Customer Created"));
   } catch (e) {
     next(e);
   }
