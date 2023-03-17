@@ -23,7 +23,7 @@ export const addKycDetails = createAsyncThunk(
       console.log(e)
     }
 
-    return axios.post(`${API_URL}/retail/on-board-customer`, formData, { headers: {
+    return axios.post(`${API_URL}/api/v1/retail/on-board-customer`, formData, { headers: {
       "Content-Type": "multipart/form-data",
     },})
       .then((response) => {
