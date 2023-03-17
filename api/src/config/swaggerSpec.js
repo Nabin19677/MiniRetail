@@ -12,13 +12,13 @@ const swaggerDefinition = {
       url: "https://anilkhadka.info.np",
     },
   },
-  tags:["Retail"]
+  tags: ["Retail"],
 };
 
 const options = {
   swaggerDefinition,
   // Paths to files containing OpenAPI definitions
-  apis: ["./src/app/v1/modules/retail/*.js"],
+  apis: ["./src/app/v1/modules/*/*.js", "./src/app/v1/modules/*/*/*.js"],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
